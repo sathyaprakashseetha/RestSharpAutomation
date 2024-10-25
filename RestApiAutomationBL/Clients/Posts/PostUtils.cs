@@ -2,12 +2,6 @@
 using RestApiAutomationBL.Response.Posts;
 using Newtonsoft.Json;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Training_RestSharpAutomationFramework.RestClientUtils;
 using System.Net;
 
@@ -16,12 +10,12 @@ namespace RestApiAutomationBL.Clients.Posts
     public class PostUtils
     {
         //Create a new post
-        public CreatePostsValidResponse CreatePost(int id, string title, string author)
+        public CreatePostsValidResponse CreatePost(string id, string title, int views)
         {
             CreatePostsValidRequest requestBody = new CreatePostsValidRequest();
             requestBody.id = id;
             requestBody.title = title;
-            requestBody.author = author;
+            requestBody.views = views;
            
             var requestString = JsonConvert.SerializeObject(requestBody);
 
@@ -30,16 +24,16 @@ namespace RestApiAutomationBL.Clients.Posts
         }
 
         //Delete a post
-        public bool DeletePost(int id, HttpStatusCode expectedStatusCode)
+        public bool DeletePost(string id, HttpStatusCode expectedStatusCode)
         {
-            return RestClientUtilities.Delete("posts/" + id.ToString(), DataFormat.Json, HttpStatusCode.OK );
+            return RestClientUtilities.Delete("posts/" + id, DataFormat.Json, HttpStatusCode.OK);
         }
 
         //Get a post
 
-        public CreatePostsValidResponse[] GetPost(int id)
+        public CreatePostsValidResponse[] GetPost(string id)
         {
-            return RestClientUtilities.Get<CreatePostsValidResponse[]>("posts?id=" + id.ToString(), DataFormat.Json);
+            return RestClientUtilities.Get<CreatePostsValidResponse[]>("posts?id=" + id, DataFormat.Json);
 
         }
     } 

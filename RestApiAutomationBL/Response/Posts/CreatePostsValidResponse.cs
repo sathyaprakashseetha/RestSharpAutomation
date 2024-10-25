@@ -8,8 +8,8 @@ namespace RestApiAutomationBL.Response.Posts
 {
     public class CreatePostsValidResponse
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string title { get; set; }
-        public string author { get; set; }
+        public int views { get; set; }
     }
 }

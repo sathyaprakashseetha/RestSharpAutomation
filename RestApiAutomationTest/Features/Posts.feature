@@ -1,11 +1,15 @@
 ﻿Feature: Posts
 
-A short summary of the feature
-
-@tag1
 Scenario Outline: Create a new Post
-	Given user creates a new post using id '<id>' title '<title>' and author '<author>'
-	Then a post is created with id '<id>' title <title> and author <author>
+	Given user creates a new post using id '<id>' title '<title>' and author '<views>'
+	Then a post is created with id '<id>' title '<title>' and author '<views>'
 Examples:
-	| id | title   | author   |
-	| 61 | title61 | author61 |
+	| id | title       | views |
+	| 3  | third title | 300   |
+
+Scenario Outline: Get a Post
+	Given user retrives a post using id '<id>'
+	Then verify the response for id '<id>' title '<title>' and author '<views>'
+Examples:
+	| id | title       | views |
+	| 3  | third title | 300   |

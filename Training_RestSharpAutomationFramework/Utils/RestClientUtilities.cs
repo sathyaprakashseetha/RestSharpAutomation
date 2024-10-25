@@ -1,20 +1,15 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
-using RestSharp.Authenticators;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Globalization;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Training_RestSharpAutomationFramework.RestClientUtils
 {
     public class RestClientUtilities
     {
-        //dgfg
         private static RestClient _restClient;
         public static RestClient RestClient
         {
