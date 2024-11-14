@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using RestSharp;
 using Training_RestSharpAutomationFramework.RestClientUtils;
 using System.Net;
+using RestApiAutomationBL.BuilderPattern.RequestBuilder;
+using System.Net.Http;
 
 namespace RestApiAutomationBL.Clients.Posts
 {
@@ -36,5 +38,14 @@ namespace RestApiAutomationBL.Clients.Posts
             return RestClientUtilities.Get<CreatePostsValidResponse[]>("posts?id=" + id, DataFormat.Json);
 
         }
+
+        public HttpResponseMessage CreatePost(string id,string title)
+        {
+            PostRequestOptionalBuilder requestBodyBuilder = new PostRequestOptionalBuilder();
+            CreatePostsValidRequest requestBody = requestBodyBuilder.WithIdAndTitle(id, title).Build();
+            var requestString = JsonConvert.SerializeObject(requestBody);
+            return RestClientUtilities.Post<HttpResponseMessage>("posts", requestString, DataFormat.Json);
+        }
+
     } 
 }

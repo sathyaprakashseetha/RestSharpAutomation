@@ -13,3 +13,10 @@ Scenario Outline: Get a Post
 Examples:
 	| id | title       | views |
 	| 3  | third title | 300   |
+
+Scenario Outline: Create a new Post with only id and title
+	Given user creates a new post using id '<id>' and title '<title>'
+	Then verify the response
+Examples:
+	| id | title        |
+	| 4  | fourth title |

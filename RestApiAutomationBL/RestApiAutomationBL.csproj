@@ -76,6 +76,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuilderPattern\Director\Director.cs" />
+    <Compile Include="BuilderPattern\RequestBuilder\PostRequestOptionalBuilder.cs" />
     <Compile Include="Clients\Posts\PostUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Posts\CreatePostsValidRequest.cs" />

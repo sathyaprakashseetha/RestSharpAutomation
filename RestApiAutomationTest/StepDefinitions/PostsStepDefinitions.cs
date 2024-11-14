@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using RestApiAutomationBL.Clients.Posts;
 using RestApiAutomationBL.Response.Posts;
+using System.Net;
+using System.Net.Http;
 using TechTalk.SpecFlow;
 
 namespace RestApiAutomationTest.StepDefinitions
@@ -10,6 +12,7 @@ namespace RestApiAutomationTest.StepDefinitions
     {
         private CreatePostsValidResponse response;
         private CreatePostsValidResponse[] responseGET;
+        private HttpResponseMessage responsePOST;
         PostUtils postUtils = new PostUtils();
 
         [Given(@"user creates a new post using id '([^']*)' title '([^']*)' and author '([^']*)'")]
@@ -38,6 +41,17 @@ namespace RestApiAutomationTest.StepDefinitions
             Assert.AreEqual(responseGET[0].id, id);
             Assert.AreEqual(responseGET[0].title, title);
             Assert.AreEqual(responseGET[0].views, views);
+        }
+
+        [Given(@"user creates a new post using id '([^']*)' and title '([^']*)'")]
+        public void GivenUserCreatesANewPostUsingIdAndTitle(string id, string title)
+        {
+            responsePOST = postUtils.CreatePost(id,title);
+        }
+        [Then(@"verify the response")]
+        public void ThenVerifyTheResponse()
+        {
+            Assert.AreEqual(HttpStatusCode.OK,responsePOST.StatusCode);
         }
 
     }
